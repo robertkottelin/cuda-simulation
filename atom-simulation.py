@@ -18,11 +18,11 @@ tau = 0.1  # Time constant for temperature control
 epsilon = 1e-30  # Small value to prevent division by zero
 
 # Simulation parameters
-N_protons = 1000
-N_neutrons = 1000
-N_electrons = 1000
+N_protons = 100
+N_neutrons = 100
+N_electrons = 100
 N_particles = N_protons + N_neutrons + N_electrons
-L = 1e-10  # Size of the simulation box (m)
+L = 1e-11  # Size of the simulation box (m)
 dt = 1e-22  # Time step (s)
 steps = 1000000  # Number of simulation steps
 
@@ -124,7 +124,7 @@ masses_device = cuda.to_device(masses)
 charges_device = cuda.to_device(charges)
 
 # Set up CUDA grid and block dimensions
-threads_per_block = 256
+threads_per_block = 128
 blocks_per_grid = (N_particles + (threads_per_block - 1)) // threads_per_block
 
 # Create results directory if it does not exist
